@@ -27,9 +27,7 @@ WC[CONTACT MANAGER UI] --> AG
 - Contact Management App Server - 
 - Mail Service - 
 - SMS Service - 
-- Contact Manager UI -  
-
-```  
+- Contact Manager UI -
 
 ## Requirements
 
