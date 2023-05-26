@@ -34,7 +34,7 @@ jobs:
         username: ${{secrets.AWS_CLOUD_VM_USERNAME}}
         script: |
           pm2 delete all
-          cd /var/app/node-apps
+          cd /home/ubuntu/node-apps
           git pull
           npm install
           pm2 start npm -- start
