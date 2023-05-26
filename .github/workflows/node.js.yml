@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [14.x, 16.x, 18.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -34,8 +34,4 @@ jobs:
         host: ${{secrets.AWS_CLOUD_VM_IP}}
         username: ${{secrets.AWS_CLOUD_VM_USERNAME}}
         script: |
-          pm2 delete all
-          cd /var/app/contact-mgt-app-server
-          git pull
-          npm install
-          pm2 start npm -- start
+          echo "hello"
