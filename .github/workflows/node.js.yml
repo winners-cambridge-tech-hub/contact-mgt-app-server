@@ -37,5 +37,5 @@ jobs:
           cd /home/ubuntu/node-apps/contact-mgt-app-server
           git pull
           npm install
-          pm2 start npm -- start
+          pm2 start DB_PASS=${{secrets.AWS_DB_PASS}} npm -- start
           
