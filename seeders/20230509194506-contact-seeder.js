@@ -6,10 +6,10 @@ module.exports = {
 
         return queryInterface.bulkInsert('contacts', [
             {
-                "first_name": "Codie",
-                "middle_name": "Lotta",
-                "last_name": "McGinty",
-                "email": "cmcginty0@list-manage.com",
+                "first_name": "Pastor",
+                "middle_name": "Abayomi",
+                "last_name": "Mosaku",
+                "email": "abayomi.mosaku0@winners-chapel.org.uk",
                 "phone_number": "3777781887",
                 "contact_address": "PO Box 62842 Kenwood Place, Cambridge",
                 "marital_status": "MARRIED",
@@ -30,10 +30,10 @@ module.exports = {
                 "status": "ACTIVE"
             },
             {
-                "first_name": "Shaughn",
-                "middle_name": "Forester",
-                "last_name": "Tremollet",
-                "email": "stremollet1@omniture.com",
+                "first_name": "Moriah",
+                "middle_name": "Obaje",
+                "last_name": "Obaje",
+                "email": "moriah@gmail.com",
                 "phone_number": "1981760657",
                 "contact_address": "PO Box 47832 Kenwood Place, Cambridge",
                 "marital_status": "MARRIED",
@@ -54,7 +54,7 @@ module.exports = {
                 "status": "PENDING"
             },
             {
-                "first_name": "Joey",
+                "first_name": "Justina",
                 "middle_name": "Kerby",
                 "last_name": "Hark",
                 "email": "jhark2@mashable.com",
