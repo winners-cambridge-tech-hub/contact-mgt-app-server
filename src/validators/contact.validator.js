@@ -1,0 +1,38 @@
+const Validator = require('fastest-validator');
+
+class ContactValidator {
+
+    validate(contactDto) {
+        const schema = {
+            first_name: { type: "string", optional: false, max: "100" },
+            last_name: { type: "string", optional: false, max: "100" },
+            middle_name: { type: "string", optional: false, max: "100" },
+            email: { type: "email", optional: false, max: "100" },
+            contact_address: { type: "string", optional: false, max: "100" },
+            birthday_month: { type: "string", optional: false, max: "100" },
+            birthday_day: { type: "string", optional: false, max: "100" },
+            town_city: { type: "string", optional: false, max: "100" },
+            county: { type: "string", optional: false, max: "100" },
+            post_code: { type: "string", optional: false, max: "100" },
+            gender: { type: "string", optional: false, max: "100" },
+            phone_number: { type: "number", optional: false, max: "9999999999" },
+            marital_status: { type: "string", optional: false, max: "100" },
+            first_attendance: { type: "string", optional: false, max: "100" },
+            bfc_status: { type: "string", optional: false, max: "100" },
+            water_baptism: { type: "string", optional: false, max: "100" },
+            service_unit: { type: "string", optional: false, max: "100" },
+            wofbi_status: { type: "string", optional: false, max: "100" },
+        }
+        const v = new Validator();
+        const validation_failed = v.validate(contactDto, schema);
+        console.log(validation_failed)
+
+        return validation_failed === true ? true : {validation_failed};
+
+    }
+
+}
+
+module.exports = {
+    ContactValidator: ContactValidator
+}
