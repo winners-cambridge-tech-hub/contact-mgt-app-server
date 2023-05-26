@@ -94,6 +94,17 @@ npm build
 
 ### Code Architecture
 
-This is designed to use the Onion Architecture, an Enterprise layered architecture ... 
+This is designed to use the Onion Architecture, an Enterprise layered architecture ...
+
+
+
+sequelize seed:generate --name category-seeder
+sequelize db:seed:all
+sequelize db:seed --seed 0230509013006-category-seeder
+
+
+sequelize db:seed:undo
+sequelize db:seed:undo:all
+sequelize db:seed:undo --seed 0230509013006-category-seeder
 
 
