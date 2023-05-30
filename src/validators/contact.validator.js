@@ -15,7 +15,7 @@ class ContactValidator {
             county: { type: "string", optional: false, max: "100" },
             post_code: { type: "string", optional: false, max: "100" },
             gender: { type: "string", optional: false, max: "100" },
-            phone_number: { type: "number", optional: false, max: "9999999999" },
+            phone_number: { type: "string", optional: false, max: "100" },
             marital_status: { type: "string", optional: false, max: "100" },
             first_attendance: { type: "string", optional: false, max: "100" },
             bfc_status: { type: "string", optional: false, max: "100" },

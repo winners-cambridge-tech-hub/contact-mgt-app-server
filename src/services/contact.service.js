@@ -1,4 +1,3 @@
-const models = require("../../models");
 const {ContactRepositories} = require('../repositories/contact.repositories')
 const Api404Error = require('../exception/api404Error')
 const {Pagination} = require('../services/pagination.service')
@@ -44,10 +43,9 @@ class ContactService {
         return result;
     }
 
-    async getAllContacts(page, dataSize, email) {
+    async getAllContacts(page, dataSize, email, phone, first_name, middle_name, last_name, birthday_month) {
         const {size, offset} = pagination.getPagination(page, dataSize);
-        let condition = email ? {email: {[models.Sequelize.Op.like]: `%${email}%`}} : null;
-        return await contactRepositories.findAll(condition, size, offset).then((result) => {
+        return await contactRepositories.findAll(email, phone, first_name, middle_name, last_name, birthday_month, size, offset).then((result) => {
             return pagination.getPagingData(result, page, size)
         })
     }
