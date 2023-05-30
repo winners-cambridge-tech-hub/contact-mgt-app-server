@@ -42,8 +42,13 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the application from https://github.com/winners-cambridge-tech-hub/contact-mgt-app-server.git
 1. Run `npm install` to build your local node_modules
 1. Create database in your running Mysql Instance
-1. Update your .env.local file with your database configuration
+1. Update your .env file with your database <username>, <password>, and <table-name >
+1. This settings wil be automatically picked up by the configuration fil at /config/config.js
+1. install sequelize-cli
+1. install mysql2
 1. To create tables in the database, run migration `sequelize db:migrate`
+1. Optional: if you want to load test data, run the command`sequelize db:seed:all`
+1. Optional: if you want to delete test data, run the command`sequelize db:seed:undo:all`
 1. Run `npm start`  or `node server.js`
 
 ### Contributing
@@ -96,15 +101,14 @@ npm build
 
 This is designed to use the Onion Architecture, an Enterprise layered architecture ...
 
-
-
+### Other commands
 sequelize seed:generate --name category-seeder
-sequelize db:seed:all
-sequelize db:seed --seed 0230509013006-category-seeder
 
 
-sequelize db:seed:undo
-sequelize db:seed:undo:all
-sequelize db:seed:undo --seed 0230509013006-category-seeder
+
+
+
+
+
 
 
