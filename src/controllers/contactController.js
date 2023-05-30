@@ -22,11 +22,12 @@ function createNewContact(req, res) {
 }
 
 function getAllContact(req, res) {
-    const {page, size, email} = req.query;
-    contactService.getAllContacts(page, size, email).then(result => {
+    const {page, size, email, phone_number, first_name, middle_name, last_name, birthday_month} = req.query;
+    contactService.getAllContacts(page, size, email, phone_number, first_name, middle_name, last_name, birthday_month).then(result => {
+        console.log(result)
         res.status(200).json(result)
     }).catch(error => {
-        res.status(error.statusCode).json(error)
+        res.status(400).json(error)
     })
 }
 
