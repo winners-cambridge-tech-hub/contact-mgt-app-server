@@ -103,6 +103,7 @@ This is designed to use the Onion Architecture, an Enterprise layered architectu
 
 ### Other commands
 sequelize seed:generate --name category-seeder
+sequelize model:generate --name Tutorial --attributes title:string,description:string,published:boolean
 
 
 

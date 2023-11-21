@@ -40,10 +40,13 @@ module.exports = {
         type: Sequelize.STRING,
       },
       birthday_month: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        validate: {
+          max: 12
+        }
       },
       birthday_day: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       gender: {
         type: Sequelize.STRING,

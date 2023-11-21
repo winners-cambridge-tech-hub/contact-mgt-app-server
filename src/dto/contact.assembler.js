@@ -1,5 +1,6 @@
 const {ContactDto} = require("./contact.dto")
 const Validator = require('fastest-validator');
+const readXlsxFile = require("read-excel-file/node");
 
 class ContactAssembler {
 
@@ -78,6 +79,57 @@ class ContactAssembler {
             create_date, created_by, last_modified_date);
 
         return contactDto;
+    }
+
+    async disassembleUpload(path) {
+
+        let data = await readXlsxFile(path).then((rows) => {
+
+            rows.shift();
+            let contacts = [];
+
+            rows.forEach((row) => {
+                let c = {
+                    first_name: row[0],
+                    middle_name: row[1],
+                    last_name: row[2],
+                    email: row[3],
+                    phone_number: row[4],
+                    contact_address: row[5],
+                    marital_status: row[6],
+                    town_city: row[7],
+                    county: row[8],
+                    post_code: row[9],
+                    birthday_month: row[10],
+                    birthday_day: row[11],
+                    gender: row[12],
+                    first_attendance: row[13],
+                    bfc_status: row[14],
+                    water_baptism: row[15],
+                    service_unit: row[16],
+                    wofbi_status: row[17],
+                    approved_time: row[18],
+                    create_date: row[19],
+                    create_by: row[20],
+                    last_modified_date: row[21],
+                    modified_by: row[22],
+                    status: row[23],
+                };
+
+                const contactDto = new ContactDto(c.first_name, c.last_name, c.middle_name,
+                    c.email, c.contact_address, c.birthday_month,
+                    c.birthday_day, c.town_city, c.county,
+                    c.country, c.post_code, c.gender,
+                    c.phone_number, c.marital_status, c.first_attendance,
+                    c.bfc_status, c.water_baptism, c.service_unit,
+                    c.wofbi_status, c.status, c.approved_time,
+                    c.create_date, c.created_by, c.last_modified_date);
+
+                contacts.push(contactDto);
+            });
+            return contacts;
+        });
+        return data;
     }
 
 }
