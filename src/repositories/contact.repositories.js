@@ -32,7 +32,7 @@ class ContactRepositories {
         let firstNameParam = first_name ? {first_name: {[Op.like]: `%${first_name}%`}} : null;
         let middleNameParam = middle_name ? {middle_name: {[Op.like]: `%${middle_name}%`}} : null;
         let lastNameParam = last_name ? {last_name: {[Op.like]: `%${last_name}%`}} : null;
-        let birthdayMonthParam = birthday_month ? {birthday_month: {[Op.like]: `%${birthday_month}%`}} : null;
+        let birthdayMonthParam = birthday_month ? {birthday_month: {[Op.eq]: `${birthday_month}`}} : null;
 
         let condition = (emailParam || phoneNumberParam || firstNameParam || middleNameParam || lastNameParam || birthdayMonthParam) ?
             {[Op.and]: [emailParam, phoneNumberParam, firstNameParam, middleNameParam, lastNameParam, birthdayMonthParam]} : null;

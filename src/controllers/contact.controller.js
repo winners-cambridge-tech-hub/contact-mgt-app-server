@@ -3,6 +3,9 @@ const {ContactAssembler} = require('../dto/contact.assembler')
 const {ContactService} = require('../services/contact.service')
 const {ContactValidator} = require('../validators/contact.validator')
 const {Pagination} = require('../services/pagination.service')
+const readXlsxFile = require("read-excel-file/node");
+
+const Contact = models.Contact;
 
 let contactAssembler = new ContactAssembler();
 let contactService = new ContactService();
@@ -23,10 +26,11 @@ function createNewContact(req, res) {
 
 function getAllContact(req, res) {
     const {page, size, email, phone_number, first_name, middle_name, last_name, birthday_month} = req.query;
-    contactService.getAllContacts(page, size, email, phone_number, first_name, middle_name, last_name, birthday_month).then(result => {
-        console.log(result)
-        res.status(200).json(result)
-    }).catch(error => {
+    contactService.getAllContacts(page, size, email, phone_number, first_name, middle_name, last_name, birthday_month)
+        .then(result => {
+            console.log(result)
+            res.status(200).json(result)
+        }).catch(error => {
         res.status(400).json(error)
     })
 }
@@ -63,10 +67,43 @@ function deleteContact(req, res) {
     })
 }
 
+
+async function uploadContacts(req, res) {
+
+    try {
+        if (req.file === undefined) {
+            return res.status(400).send("Please upload an excel file!");
+        }
+        let path = __basedir + "/resources/static/assets/uploads/" + req.file.filename;
+        let contacts = await contactAssembler.disassembleUpload(path);
+
+        Contact.bulkCreate(contacts)
+            .then(() => {
+                res.status(200).send({
+                    message: "Uploaded the file successfully: " + req.file.originalname,
+                });
+            })
+            .catch((error) => {
+                res.status(500).send({
+                    message: "Fail to import data into database!",
+                    error: error.message,
+                });
+            });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            message: "Could not upload the file: " + req.file.originalname,
+        });
+    }
+}
+
+
 module.exports = {
     createNewContact: createNewContact,
     getOneContact: getOneContact,
     getAllContact: getAllContact,
     updateContact: updateContact,
     deleteContact: deleteContact,
+    uploadContacts: uploadContacts,
 };
