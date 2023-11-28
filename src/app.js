@@ -9,6 +9,8 @@ global.__basedir = __dirname + "/..";
 const app = express();
 app.use(bodyParser.json());
 app.use(cors({origin: '*'}));
+
+
 app.use('/v1/contacts', contactRoute);
 app.use('/v1/tutorials', tutorialRoute);
 
