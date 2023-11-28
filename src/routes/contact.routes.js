@@ -5,7 +5,13 @@ const upload = require("../middlewares/upload");
 
 const router = express.Router();
 
+
+
+
 router.post('/', contactController.createNewContact);
+
+
+
 router.get('/:id', contactController.getOneContact);
 router.get('/', contactController.getAllContact);
 router.put('/:id', contactController.updateContact);

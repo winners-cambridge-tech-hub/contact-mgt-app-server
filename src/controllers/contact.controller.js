@@ -11,6 +11,16 @@ let contactAssembler = new ContactAssembler();
 let contactService = new ContactService();
 let contactValidator = new ContactValidator();
 
+// Controller - Collect the data from the user
+        // Assembler -
+        // Validator - Validate the data
+
+// Service - Process the data before saving in the dtabase
+        // Repository - Saving the data in to the database
+
+// DTO - Datat transfer Object
+
+
 function createNewContact(req, res) {
     let contactDto = contactAssembler.disassemble(req);
     let validationResponse = contactValidator.validate(contactDto);
