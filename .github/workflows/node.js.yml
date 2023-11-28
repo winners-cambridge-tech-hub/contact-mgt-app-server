@@ -1,0 +1,41 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Contact Mgt App Server CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build --if-present
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.2
+      with:
+        key: ${{secrets.SSH_PRIVATE_KEY}}
+        host: ${{secrets.AWS_CLOUD_VM_IP}}
+        username: ${{secrets.AWS_CLOUD_VM_USERNAME}}
+        script: |
+          pm2 delete all
+          cd /home/ubuntu/node-apps/contact-mgt-app-server
+          git pull
+          npm install
+          pm2 start DB_PASS=${{secrets.AWS_DB_PASS}} npm -- start
+          
