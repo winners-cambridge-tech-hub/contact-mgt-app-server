@@ -11,13 +11,18 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Category name cannot be null',
+        },
+      },
     },
     
   });
 
   Category.associate = (models) => {
     Category.belongsToMany(models.Contact, {
-      through: 'CategoryContact', // This is the join table name
+      through: 'CategoryContact',// This is the join table name
       foreignKey: 'categoryId',
     });
   };

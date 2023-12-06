@@ -39,6 +39,27 @@ class ContactAssembler {
             bfc_status, water_baptism, service_unit,
             wofbi_status, status, approved_time,
             create_date, created_by, last_modified_date);
+
+            // Assuming you have a req.categories array containing category names
+            
+        const contactDto = new ContactDto(first_name, last_name, middle_name,
+            email, contact_address, birthday_month,
+            birthday_day, town_city, county,
+            country, post_code, gender,
+            phone_number, marital_status, first_attendance,
+            bfc_status, water_baptism, service_unit,
+            wofbi_status, status, approved_time,
+            create_date, created_by, last_modified_date);
+
+        // Add categories to the contactDto
+        if (req.categories && Array.isArray(req.categories)) {
+            req.categories.forEach(category => {
+                const categoryDto = CategoryAssembler.toDTO({ name: category });
+                contactDto.addCategory(categoryDto);
+            });
+        }
+
+        return contactDto;
     }
 
     disassemble(req) {
@@ -77,6 +98,8 @@ class ContactAssembler {
             bfc_status, water_baptism, service_unit,
             wofbi_status, status, approved_time,
             create_date, created_by, last_modified_date);
+
+            
 
         return contactDto;
     }

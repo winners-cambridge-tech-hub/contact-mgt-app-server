@@ -1,5 +1,5 @@
 // assemblers/categoryAssembler.js
-const CategoryDTO = require('./category.dto');
+const CategoryDTO = require('../dto/category.dto')
 
 class CategoryAssembler {
   static toDTO(category) {

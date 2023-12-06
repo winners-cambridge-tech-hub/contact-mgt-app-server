@@ -38,6 +38,10 @@ class ContactDto {
     setTitle(title) {
         this.title = title;
     }
+    
+    addCategory(category) {
+        this.categories.push(category);
+    }
 
 }
 

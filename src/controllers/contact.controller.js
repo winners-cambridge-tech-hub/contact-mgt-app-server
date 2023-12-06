@@ -46,8 +46,9 @@ function getAllContact(req, res) {
 }
 
 function getOneContact(req, res) {
-    const id = req.params.id;
-    contactService.getOneContact(id).then(result => {
+    const contactId = req.params.id;
+    console.log('Contact ID:', contactId); 
+    contactService.getOneContact(contactId).then(result => {
         res.status(200).json(result)
     }).catch(error => {
         res.status(error.statusCode).json(error)

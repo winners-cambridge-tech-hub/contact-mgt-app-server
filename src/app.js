@@ -8,7 +8,7 @@ const tutorialRoute = require('./routes/tutorial.routes');
 global.__basedir = __dirname + "/..";
 
 const app = express();
-
+app.use(express.json());
 // Apply bodyParser middleware for non-GET requests
 app.use((req, res, next) => {
     if (req.method !== 'GET') {
@@ -23,6 +23,6 @@ app.use(cors({origin: '*'}));
 
 app.use('/v1/contacts', contactRoute);
 app.use('/v1/tutorials', tutorialRoute);
-app.use("/v1/category",categoryRoute )
+app.use("/v1/category", categoryRoute )
 
 module.exports = app;

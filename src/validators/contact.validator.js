@@ -25,7 +25,7 @@ class ContactValidator {
         }
         const v = new Validator();
         const validation_failed = v.validate(contactDto, schema);
-        console.log(validation_failed)
+        console.log(validation_failed)  
 
         return validation_failed === true ? true : {validation_failed};
 

@@ -14,7 +14,7 @@ class ContactService {
             if (result) {
                 throw new Api404Error(`Email id: ${contactDto.email} already exists.`);
             } else {
-                return contactRepositories.save(contactDto);
+                return this.contactRepositories.save(contactDto);
             }
         })
         return result;
@@ -25,12 +25,12 @@ class ContactService {
         return result;
     }
 
-    async getOneContact(id) {
-        const result = await contactRepositories.findById(id).then((result) => {
+    async getOneContact(contactId) {
+        const result = await contactRepositories.findById(contactId).then((result) => {
             if (result) {
                 return result;
             } else {
-                console.log(id+" NOT FOUND")
+                console.log(contactId+" NOT FOUND")
                 throw new Api404Error(`Contact id: ${id} does not exists.`);
             }
         })
